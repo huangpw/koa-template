@@ -11,7 +11,7 @@ exports.isAdmin = async (ctx, next) => {
   const user = jwt.decode(token, config.jwtSecretKey)
   //   console.log(user, 'user')
   ctx.request.user = user
-  console.log(user, 'user')
+  //   console.log(user, 'user')
   await next()
   //   const is_admin = req.auth.is_admin
   //   if (!is_admin) {

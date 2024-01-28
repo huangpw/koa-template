@@ -1,30 +1,24 @@
-const jwt = require("jsonwebtoken");
-
-async function checkToken(ctx, next) {
-  let url = ctx.url.split("?")[0];
-  let apiArr = ["/login", "/register"];
-  if (apiArr.includes(url)) {
-    await next();
-  } else {
-    // 规定token写在header 的 'autohrization'
-    let token = ctx.request.headers["authorization"];
-    // 如果有token的话就开始解析
-    const tokenItem = jwt.verify(token, "token");
-    // 将token的创建的时间和过期时间结构出来
-    const { time, timeout } = tokenItem;
-    // 拿到当前的时间
-    let data = new Date().getTime();
-    // 判断一下如果当前时间减去token创建时间小于或者等于token过期时间，说明还没有过期，否则过期
-    if (data - time <= timeout) {
-      // token没有过期
-      await next();
+exports.checkToken = async (ctx, next) => {
+  return next().catch((err) => {
+    if (err.status === 401) {
+      // 自定义返回结果（Token失效）
+      ctx.status = 401
+      return (ctx.body = {
+        status: 401,
+        message: '身份认证失败' || err.message
+      })
+    } else if (err.message.indexOf('maxFileSize') !== -1) {
+      // 文件上传大小限制
+      return (ctx.body = {
+        status: 1,
+        message: '超出文件上传大小限制(10MB)'
+      })
     } else {
-      ctx.body = {
-        status: 405,
-        message: "token 已过期，请重新登陆",
-      };
+      // 其他错误
+      return (ctx.body = {
+        status: 500,
+        message: '服务器内部错误' || err.message
+      })
     }
-  }
+  })
 }
-
-module.exports = checkToken;

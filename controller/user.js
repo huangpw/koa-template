@@ -40,6 +40,7 @@ exports.register = async (ctx) => {
         avatar: '/avatar/1.jpg',
         user_role,
         create_time: getNowTime(),
+        status: 1,
         del_flag: 0
       }
       const insertSql = 'insert into b_user set ?'

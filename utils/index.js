@@ -14,7 +14,7 @@ exports.send = (message, status = 1, data) => {
     data
   }
 }
-
+// 枚举对象
 const messages = {
   0: '成功',
   1: '失败',
