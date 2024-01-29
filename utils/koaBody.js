@@ -10,6 +10,8 @@ koaBody({
     maxFileSize: 10 * 1024 * 1024,
     maxFieldsSize: 10 * 1024 * 1024, // 文件上传大小限制10MB
     onFileBegin: (name, file) => {
+      console.log(name, 'name')
+      console.log(file, 'file')
       // 保存到此文件夹目录下
       const dir = path.resolve(__dirname, `./public/uploads/${name}`)
       // 检查文件夹是否存在，如果不存在则新建文件夹

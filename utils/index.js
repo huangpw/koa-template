@@ -37,3 +37,14 @@ exports.formatTime = (data) => {
   if (!data) return ''
   return dayjs(data).format('YYYY-MM-DD HH:mm:ss')
 }
+
+// 目录
+exports.directorys = {
+  file: 'files',
+  files: 'files',
+  image: 'images',
+  images: 'images',
+  video: 'videos',
+  videos: 'videos',
+  other: 'others'
+}
