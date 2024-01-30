@@ -40,14 +40,6 @@ app.use(
       maxFieldsSize: 10 * 1024 * 1024, // 文件上传大小限制10MB
       onFileBegin: (name, file) => {
         // 保存到此文件夹目录下
-        // console.log(path.join(`/public/uploads/${name}`))
-        // const dir = path.resolve(__dirname, `/public/uploads/${name}`)
-        // if (name === 'file' || name === 'files') {
-        //   name = 'files'
-        // } else if (name === 'image' || name === 'images') {
-        //   name = 'images'
-        // } else if (name === 'video' || name === 'videos') {
-        // }
         name = directorys[name] || directorys['other']
         const dir = path.join(__dirname, `public/uploads/${name}`)
         // 检查文件夹是否存在，如果不存在则新建文件夹

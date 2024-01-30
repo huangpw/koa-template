@@ -48,3 +48,13 @@ exports.directorys = {
   videos: 'videos',
   other: 'others'
 }
+
+exports.randomString = (length) => {
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  var charactersLength = characters.length
+  var randomString = ''
+  for (var i = 0; i < length; i++) {
+    randomString += characters.charAt(Math.floor(Math.random() * charactersLength))
+  }
+  return randomString
+}

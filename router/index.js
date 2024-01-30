@@ -3,6 +3,7 @@ const router = new Router()
 const user = require('./user')
 const userinfo = require('./userinfo')
 const upload = require('./upload')
+const email = require('./email')
 
 // 登录注册
 router.use(user.routes(), user.allowedMethods())
@@ -10,5 +11,7 @@ router.use(user.routes(), user.allowedMethods())
 router.use(userinfo.routes(), userinfo.allowedMethods())
 // 文件上传
 router.use(upload.routes(), upload.allowedMethods())
+// 邮件发送
+router.use(email.routes(), email.allowedMethods())
 
 module.exports = router
