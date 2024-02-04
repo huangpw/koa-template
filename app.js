@@ -24,7 +24,7 @@ app.use(checkToken)
 // path: [/^\/blog/, /^\/test/]
 app.use(
   koaJWT({ secret: config.jwtSecretKey, algorithms: ['HS256'] }).unless({
-    path: [/^\/login/, /^\/register/, /^\/blog/, , /^\/uploads/]
+    path: [/^\/login/, /^\/register/, /^\/blog/, /^\/send/, /^\/uploads/]
   })
 )
 

@@ -49,6 +49,7 @@ exports.directorys = {
   other: 'others'
 }
 
+// 随机编码
 exports.randomString = (length) => {
   var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   var charactersLength = characters.length
@@ -58,3 +59,17 @@ exports.randomString = (length) => {
   }
   return randomString
 }
+
+// dayjs计算两个日期超过10分钟
+// const dayjs = require('dayjs');
+
+// const date1 = dayjs('2023-07-06T10:00:00');
+// const date2 = dayjs('2023-07-06T10:11:00');
+
+// const diffInMinutes = date2.diff(date1, 'minute');
+
+// if (diffInMinutes > 10) {
+//   console.log('两个日期之间的时间差超过10分钟');
+// } else {
+//   console.log('两个日期之间的时间差未超过10分钟');
+// }

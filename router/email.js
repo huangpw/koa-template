@@ -3,7 +3,7 @@ const email = new Router()
 const { randomString } = require('../utils')
 const { sendEmail } = require('../controller/email')
 
-email.post('/email/send', async (ctx) => {
+email.post('/send/email', async (ctx) => {
   try {
     // const bodyParams = ctx.request.body
     // const { email } = bodyParams
@@ -29,7 +29,7 @@ email.post('/email/send', async (ctx) => {
     ctx.body = '1111'
   } catch (err) {
     ctx.body = {
-      code: 0,
+      code: 1,
       msg: err
     }
   }
