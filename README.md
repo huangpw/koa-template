@@ -139,3 +139,68 @@ app.listen(port, ()=>{
 })
 ```
 
+
+
+# 定时任务封装成方法或接口
+
+```js
+const schedule = require('node-schedule');  
+  
+// 创建一个定时任务的方法  
+function createTask(taskFunction, interval) {  
+  const job = schedule.scheduleJob(interval, taskFunction);  
+  return {  
+    cancel: function() {  
+      job.cancel();  
+    }  
+  };  
+}  
+  
+// 定义要执行的任务函数  
+function myTask() {  
+  console.log('这个任务每10分钟执行一次');  
+}  
+  
+// 创建定时任务，每10分钟执行一次  
+const task = createTask(myTask, '*/10 * * * *');  
+  
+// 在需要时取消定时任务  
+// task.cancel();
+```
+
+```js
+const schedule = require('node-schedule');  
+  
+// 定义定时任务接口  
+function ScheduleTask(taskFunction, interval) {  
+  this.taskFunction = taskFunction;  
+  this.interval = interval;  
+  this.job = null;  
+}  
+  
+ScheduleTask.prototype.start = function() {  
+  this.job = schedule.scheduleJob(this.interval, this.taskFunction);  
+};  
+  
+ScheduleTask.prototype.stop = function() {  
+  if (this.job) {  
+    this.job.cancel();  
+    this.job = null;  
+  }  
+};  
+  
+// 定义要执行的任务函数  
+function myTask() {  
+  console.log('这个任务每10分钟执行一次');  
+}  
+  
+// 创建定时任务实例  
+const task = new ScheduleTask(myTask, '*/10 * * * *');  
+  
+// 启动定时任务  
+task.start();  
+  
+// 在需要时停止定时任务  
+// task.stop();
+```
+

@@ -22,7 +22,10 @@ const messages = {
   500: '服务器内部错误'
 }
 
-// 获取当前日期时间
+/**
+ * 获取当前日期时间
+ * @returns 'YYYY-MM-DD HH:mm:ss'
+ */
 exports.getNowTime = () => {
   return dayjs().format('YYYY-MM-DD HH:mm:ss')
 }
@@ -73,3 +76,16 @@ exports.randomString = (length) => {
 // } else {
 //   console.log('两个日期之间的时间差未超过10分钟');
 // }
+
+// 区分手机号码和邮箱
+exports.validateValue = (value) => {
+  var mobileRegex = /^1[3456789]\d{9}$/
+  var emailRegex = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+  if (mobileRegex.test(value)) {
+    return 1001
+  } else if (emailRegex.test(value)) {
+    return 1002
+  } else {
+    return 1000
+  }
+}

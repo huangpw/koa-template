@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
     pass: 'yqxaruxitecxbdbd'
   }
 })
-const sendEmail = (toUserEmail, title, content) => {
+exports.sendEmail = (toUserEmail, title, content) => {
   return new Promise((resolve) => {
     // 配置收件人信息
     const receiver = {
@@ -28,19 +28,19 @@ const sendEmail = (toUserEmail, title, content) => {
     // 发送邮件
     transporter.sendMail(receiver, (error, info) => {
       if (error) {
-        resolve({
-          code: 0,
+        return resolve({
+          code: 1,
           msg: error
         })
       }
       transporter.close()
-      resolve({
-        code: 200,
-        msg: 'success'
+      return resolve({
+        code: 0,
+        msg: '发送成功'
       })
     })
   })
 }
-module.exports = {
-  sendEmail
-}
+// module.exports = {
+//   sendEmail
+// }

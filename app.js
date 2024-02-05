@@ -11,6 +11,16 @@ const config = require('./utils/config') // token秘钥
 const { checkToken } = require('./utils/checkToken') // token校验
 const { directorys } = require('./utils')
 // const koaBody = require('./utils/koaBody')
+// const schedule = require('node-schedule') // 定时任务
+
+// '*/10 * * * *' 10分钟执行
+// 每分钟的第30秒执行任务
+// const job = schedule.scheduleJob('30 * * * * *', () => {
+//   console.log('执行预定任务:', new Date())
+// })
+
+// 取消定时任务
+// job.cancel();
 
 // 允许跨域
 app.use(cors())
